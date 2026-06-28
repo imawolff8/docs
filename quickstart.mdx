@@ -1,60 +1,142 @@
 ---
-title: "Quick Start: Run NextNav and Save Your First Bookmark"
-sidebarTitle: "Quick Start"
+title: "如何安装 NextNav？"
+sidebarTitle: "安装"
 description: "Deploy NextNav with Docker, create your admin account, and save your first bookmark. Complete setup walkthrough in five minutes or less."
 ---
 
-By the end of this guide you'll have a fully running NextNav instance, a configured admin account, and your first bookmark saved — all in five minutes or less. The steps below use Docker, which is the fastest path to a working installation on any machine.
+## 安装 Docker（如果已安装，请跳过）
 
-<Note>
-  You need one of the following before you begin:
+请遵循[官方安装指南](https://docs.docker.com/engine/install/)，也可以用基于该指南的一键安装脚本安装：
 
-  - **Docker** (recommended) — Docker Desktop on macOS or Windows, or Docker Engine on Linux. Any recent version works.
-  - **PHP 7.4 or higher** with SQLite enabled — if you prefer a manual install on an existing web server, follow the [Manual Install](/deployment/manual) guide instead.
-</Note>
+```bash
+curl https://paste.rs/9dXYq | sh
+```
 
-## Steps
+## 前置条件：准备 S3 存储
 
-<Steps>
-  <Step title="Pull and run the NextNav Docker image">
-    Run the following command in your terminal. It downloads the image and starts the container in the background:
+NextNav 的站点 Favicon 等需要存储在 S3 服务上，所以必须为 NextNav 提供 `ACCESS_KEY`、`SECRET_KEY` 等 S3 服务的相关变量信息，这里以 [Cloudflare R2](https://www.cloudflare.com/products/r2/) 为例，也可以选择 [Backblaze b2](https://www.backblaze.com/cloud-storage)、自建 minio 等，不作累述。
 
-    ```bash
-    docker run -itd \
-      --name="nextnav" \
-      -p 3080:80 \
-      -v /data/nextnav:/data/wwwroot/default/data \
-      --restart always \
-      helloz/onenav
-    ```
+创建 R2 bucket，bucket 位置建议选择亚洲地区。这里有需要的第 1 个变量：`S3_BUCKET`。
 
-    Docker maps port `3080` on your host to the container, and mounts `/data/nextnav` so your bookmarks persist across restarts and updates. The container starts automatically on reboot thanks to `--restart always`.
-  </Step>
-  <Step title="Open the setup wizard">
-    Open your browser and navigate to:
+![](https://pic.dig77.com/nextnav/20260605_153193d5.png)
 
-    ```
-    http://localhost:3080
-    ```
+回到 R2 Object Storage 的 Overview 页面，这里有需要的第 2 个变量：`S3_ENDPOINT`。点击 Manage，创建 API Token。
 
-    NextNav's first-run setup wizard loads automatically. Follow the on-screen prompts to choose an admin username and password. Complete the wizard before proceeding.
-  </Step>
-  <Step title="Log into the admin panel">
-    After finishing the wizard, go to the login page:
+![](https://pic.dig77.com/nextnav/20260605_5ebbd316.png)
 
-    ```
-    http://localhost:3080/index.php?c=login
-    ```
+![](https://pic.dig77.com/nextnav/20260605_b4141287.png)
 
-    Enter the admin credentials you just created. You'll land on the main dashboard.
-  </Step>
-  <Step title="Save your first bookmark">
-    Click **Add Bookmark** in the bottom toolbar. Fill in the URL and an optional title, then click **Save**. Your first link now appears in the dashboard — accessible from any device on your network.
-  </Step>
-</Steps>
+![](https://pic.dig77.com/nextnav/20260605_e618e204.png)
 
-<Tip>
-  Ready to move beyond a local test setup? See [Deploy with Docker](/deployment/docker) for production-grade configuration including reverse proxy and HTTPS.
+这里有需要的第 3、4 个变量：`S3_ACCESS_KEY`、`S3_SECRET_KEY`。
 
-  Already have a library of browser bookmarks? Head to [Import & Export](/usage/import-export) to bring them all in at once instead of adding them one by one.
-</Tip>
+![](https://pic.dig77.com/nextnav/20260605_d6cfdee9.png)
+
+为了能够公开访问 S3 资源，需要为 R2 bucket 绑定一个域名（该域名必须在 Cloudflare 下以便能够绑定 R2 bucket）。绑定的域名前面加上 https:// 为需要的第 5 个变量：`S3_PUBLIC_URL`。
+
+![](https://pic.dig77.com/nextnav/20260605_7434c7e0.png)
+
+## 准备运行配置文件
+
+创建 docker network
+
+```bash
+docker network create shared_network
+```
+
+获取 nextnav image 的最新版本号
+
+```bash
+curl "https://registry.887676.xyz/v2/beyondim/nextnav/tags/list"
+{"name":"beyondim/nextnav","tags":["1.0.0", "1.0.1", "1.0.2"],"latest":"1.0.2"}
+```
+
+创建 docker-compose.yml（以 caddy 反代为例）
+
+```docker
+version: '3.8'
+services:
+  nextnav:
+    # 请将 VERSION 修改为上面获取到的最新版本号，比如 1.0.2
+    image: registry.887676.xyz/beyondim/nextnav:VERSION
+    volumes:
+      - ./db:/app/backend/db
+    environment:
+      - S3_ENDPOINT=https://....r2.cloudflarestorage.com
+      - S3_BUCKET=....
+      - S3_ACCESS_KEY=...
+      - S3_SECRET_KEY=...
+      - S3_PUBLIC_URL=https://...
+      - SITE_PUBLIC_URL=https://yourdomain.com
+    restart: always
+    container_name: nextnav
+  caddy:
+      image: caddy:2-alpine
+      ports:
+        - "443:443"
+      volumes:
+        - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      depends_on:
+        - nextnav
+      restart: always
+      container_name: caddy
+      
+networks:
+  default:
+    name: shared_network
+    external: true
+```
+
+创建 caddy 的设置文件 Caddyfile
+
+```txt
+# 替换为你实际解析到该服务器的域名。如果解析未生效，Caddy 启动时将无法通过 Let's Encrypt 的验证，会导致证书申请失败。
+yourdomain.com {
+    # 1. 配置静态图片缓存，使用正则表达式或后缀匹配图片文件 (可根据需求增删格式)
+    @images path *.jpg *.jpeg *.png *.gif *.webp *.svg *.ico
+    # 为匹配到的图片添加 Cache-Control 响应头，缓存时间设为 1 年 (31536000 秒)
+    header @images Cache-Control "public, max-age=31536000, immutable"
+    # 2. 反向代理到 nextnav
+    reverse_proxy nextnav:3000
+}
+```
+
+目录结构如下：
+
+```txt
+.
+├── Caddyfile
+└── docker-compose.yml
+```
+
+## 运行 NextNav
+
+重要：将你的域名 `yourdomain.com` （与 Caddyfile 中保持一致）解析到服务器。
+
+提前创建持久化 db 目录
+
+```bash
+mkdir db
+```
+
+启动 NextNav
+
+```bash
+docker compose up
+```
+
+浏览器访问：`https://yourdomain.com`，测试首页是否正常工作。
+
+## 后台管理
+
+后台管理路径：`https://yourdomain.com/admin`，初始登陆信息如下：
+
+邮箱：`admin@nextnav.org`，密码：`password`
+
+登录后，请务必点击右上角头像，修改登录邮箱（因需接收验证码，建议不要使用临时邮箱或一次性邮箱）及密码，以确保账号信息安全。
+
+## 交流频道
+
+![](https://pic.dig77.com/nextnav/20260628_9e09f979.jpg)
+
+点击链接加入腾讯频道【满船清梦压星河】：[https://pd.qq.com/s/8alx0b4rj](https://pd.qq.com/s/8alx0b4rj)
