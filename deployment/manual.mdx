@@ -1,5 +1,5 @@
 ---
-title: "Install NextNav Manually on a PHP Web Server"
+title: "Manual Install: NextNav on Apache or Nginx with PHP"
 sidebarTitle: "Manual Install"
 description: "Install NextNav on an existing PHP web server without Docker. Requirements, download steps, and first-run setup for Apache or Nginx with SQLite."
 ---
@@ -105,7 +105,7 @@ NextNav ships with an `.htaccess` file in the application root. Enable `mod_rewr
 Reload Apache after making changes: `sudo systemctl reload apache2`.
 
 <Note>
-  NextNav's SQLite database file is stored inside the `data/` directory. Make sure you include this folder in your regular server backups. Losing the `data/` directory means losing all your saved bookmarks.
+  NextNav's SQLite database file is stored at `data/db.sqlite` inside your installation directory. Make sure you include the entire `data/` directory in your regular server backups. Losing `data/db.sqlite` means losing all your saved bookmarks.
 </Note>
 
 <Tip>
