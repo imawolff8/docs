@@ -17,7 +17,7 @@
             "group": "开始",
             "pages": [
               "introduction",
-              "install",
+              "deploy",
               "update",
               "deployment/manual"
             ]
@@ -48,10 +48,10 @@
             ]
           },
           {
-            "group": "Help",
+            "group": "帮助",
             "pages": [
               "help/faq",
-              "help/troubleshooting"
+              "troubleshooting"
             ]
           }
         ]
