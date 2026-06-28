@@ -87,6 +87,17 @@ networks:
     external: true
 ```
 
+变量信息汇总：
+
+| 变量 | 说明 |
+| --- | --- |
+| `S3_ENDPOINT` | S3 服务的终端节点 |
+| `S3_BUCKET` | S3 服务的存储桶名称 |
+| `S3_ACCESS_KEY` | S3 服务的 Access Key |
+| `S3_SECRET_KEY` | S3 服务的 Secret Key |
+| `S3_PUBLIC_URL` | S3 服务的 公开访问 URL，在 Cloudflare R2 中，结尾不带存储桶名称，其他 S3 服务可能略有差异 |
+| `SITE_PUBLIC_URL` | 导航站的公开访问 URL |
+
 创建 caddy 的设置文件 Caddyfile
 
 ```txt
