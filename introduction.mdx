@@ -1,36 +1,50 @@
 ---
-title: "NextNav: Self-Hosted Bookmark Manager for Every Device - 1111"
-sidebarTitle: "Introduction"
-description: "NextNav centralizes your browser bookmarks in one self-hosted app. Access all your links from any device, browser, or platform without cloud accounts."
+title: "为什么选择 NextNav？"
+sidebarTitle: "介绍"
+description: "NextNav 导航是一款轻量级的书签导航程序，可帮助您集中管理浏览器书签，解决跨设备、跨平台、跨浏览器之间同步和访问困难的难题，做到一处部署，随处访问。"
 ---
 
-NextNav is a lightweight, self-hosted bookmark manager that gives you a single place to store, organize, and search all your links — accessible from any device, browser, or operating system. Whether you're switching between a work laptop, a home desktop, or a phone, your bookmarks follow you without depending on a cloud service, browser sync, or a third-party account.
-
-## Key Features
+## 主要特点
 
 <CardGroup cols={2}>
-  <Card title="Cross-Device Access" icon="mobile-screen">
-    Open your bookmarks from any device — desktop, tablet, or phone — through a standard web browser. No app installs or browser extensions required.
+  <Card title="资源占用低" icon="mobile-screen">
+    占用资源极低，通常情况下，内存占用在百兆上下，在树莓派上都能很轻松的跑起来。
   </Card>
 
-  <Card title="Cross-Browser Compatible" icon="browsers">
-    Because NextNav runs as a web app, it works identically in Chrome, Firefox, Safari, Edge, and any other modern browser.
+  <Card title="操作简单" icon="browsers">
+    操作简单，采用经典的 total commander 双栏布局，让新建、修改、删除、拖拽排序等更加方便。
   </Card>
 
-  <Card title="Self-Hosted and Private" icon="lock">
-    Your data never leaves your own server. NextNav stores everything locally in SQLite, so you stay in full control of your bookmarks and browsing history.
+  <Card title="自定义功能强大" icon="lock">
+    支持自定义网站 logo、UI 配色，支持自定义分类图标、站点 favicon，支持黑暗模式。
   </Card>
 
-  <Card title="Categories and Organization" icon="folder-open">
-    Group bookmarks into custom categories and subcategories to keep large collections tidy and easy to navigate.
+  <Card title="支持一键获取站点信息" icon="folder-open">
+    支持创建、编辑站点时一键自动获取标题、描述、favicon 等站点信息。
   </Card>
 
-  <Card title="Fast Search" icon="magnifying-glass">
-    Instantly find any saved link by title, URL, or keyword. The built-in search scans your entire library without leaving the page.
+  <Card title="支持 favicon 降级获取" icon="magnifying-glass">
+    支持 favicon 精度不足时自动采用最近邻插值算法弥补，获取失败时自动采取候补方案：创建域名首字母图片（随机字体、背景色，优化对比度）。
   </Card>
 
-  <Card title="Import Existing Bookmarks" icon="file-import">
-    Bring your existing bookmarks in with a single import step. NextNav supports standard browser export formats so you don't start from scratch.
+  <Card title="支持 AI 翻译站点描述" icon="file-import">
+    支持采用 AI 翻译生成中英文站点描述并加以润色，最大程度优化检索结果（拼音、中文、英文关键词均能匹配）。
+  </Card>
+
+  <Card title="支持私有" icon="file-import">
+    支持私有分类、站点（登录状态可见）。
+  </Card>
+
+  <Card title="支持链接检测" icon="file-import">
+    支持定时批量检测站点链接有效性（死链、重定向等）。
+  </Card>
+
+  <Card title="支持导入书签" icon="file-import">
+    支持导入浏览器书签。
+  </Card>
+
+  <Card title="支持浏览器扩展" icon="file-import">
+    支持使用浏览器扩展创建、编辑站点及及通过地址栏检索导航站内容。
   </Card>
 </CardGroup>
 
