@@ -17,8 +17,8 @@
             "group": "开始",
             "pages": [
               "introduction",
-              "quickstart",
-              "deployment/docker",
+              "install",
+              "update",
               "deployment/manual"
             ]
           },
