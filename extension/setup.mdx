@@ -1,0 +1,88 @@
+---
+title: "Install and Configure the NextNav Browser Extension"
+sidebarTitle: "Setup"
+description: "Install the NextNav extension in Chrome, Firefox, or Edge and connect it to your self-hosted NextNav instance. Includes configuration and first-use steps."
+---
+
+This page walks you through installing the NextNav browser extension and pointing it at your self-hosted NextNav instance. By the end, you'll be saving bookmarks with a single click directly from your browser toolbar.
+
+## Installation
+
+Choose your browser below and follow the steps to install the extension from its respective store.
+
+<Tabs>
+  <Tab title="Chrome">
+    1. Open the **Chrome Web Store** in your browser.
+    2. Search for **"NextNav"**, or navigate directly to it from your admin panel under **Settings** → **Browser Extension**.
+    3. Click **Add to Chrome** on the extension listing page.
+    4. Confirm the prompt by clicking **Add extension** — Chrome installs the extension and adds its icon to your toolbar.
+  </Tab>
+  <Tab title="Firefox">
+    1. Open **Firefox Add-ons** at [addons.mozilla.org](https://addons.mozilla.org).
+    2. Search for **"NextNav"** in the search bar.
+    3. Click the NextNav listing, then click **Add to Firefox**.
+    4. Approve the permissions prompt — Firefox installs the extension and pins it to your toolbar.
+  </Tab>
+  <Tab title="Edge">
+    1. Open the **Microsoft Edge Add-ons** store at [microsoftedge.microsoft.com/addons](https://microsoftedge.microsoft.com/addons).
+    2. Search for **"NextNav"**.
+    3. Click the NextNav listing, then click **Get**.
+    4. Confirm the installation prompt — Edge installs the extension and adds it to your toolbar.
+  </Tab>
+</Tabs>
+
+<Note>
+  If the extension is not yet published in a browser store, you can install it manually as an unpacked extension. Download the extension zip from the [NextNav GitHub releases page](https://github.com/nextnav/nextnav/releases), extract it to a local folder, then load it via your browser's **Extensions** → **Developer mode** → **Load unpacked** — and select the extracted folder.
+</Note>
+
+## Connecting to Your NextNav Instance
+
+Once the extension is installed, you need to point it at your running NextNav instance before you can save any bookmarks.
+
+<Steps>
+  <Step title="Open the extension popup">
+    Click the **NextNav icon** in your browser toolbar to open the extension popup.
+  </Step>
+  <Step title="Open extension settings">
+    Click **Settings** or the **gear icon** inside the popup to open the configuration panel.
+  </Step>
+  <Step title="Enter your NextNav URL">
+    Type the full URL of your NextNav instance into the **NextNav URL** field — for example, `http://192.168.1.10:3080` for a local deployment or `https://nav.yourdomain.com` for a domain-based setup.
+  </Step>
+  <Step title="Enter your credentials">
+    Enter your **admin username** and **password** in the corresponding fields.
+  </Step>
+  <Step title="Save and verify">
+    Click **Save**. The extension will test the connection to your instance and display a confirmation message if everything is set up correctly.
+  </Step>
+</Steps>
+
+## Saving a Bookmark
+
+With the extension connected, saving any page to NextNav takes just a few seconds.
+
+<Steps>
+  <Step title="Navigate to the page">
+    Open any web page you want to bookmark in your browser.
+  </Step>
+  <Step title="Click the extension icon">
+    Click the **NextNav icon** in your toolbar to open the save popup. The extension automatically fills in the page name, URL, and favicon.
+  </Step>
+  <Step title="Review and edit the details">
+    Check the pre-filled **name** and **URL**. Edit either field if you'd like to use a different title or a cleaned-up URL.
+  </Step>
+  <Step title="Select a category">
+    Use the **Category** dropdown to choose which NextNav category the bookmark should be filed under.
+  </Step>
+  <Step title="Save the bookmark">
+    Click **Save**. The bookmark is added to your NextNav instance immediately and will appear in your dashboard.
+  </Step>
+</Steps>
+
+<Tip>
+  Pin the NextNav extension to your toolbar so it's always one click away. In Chrome and Edge, click the puzzle-piece icon in the toolbar and click the pin icon next to NextNav. In Firefox, right-click the extension icon and select **Pin to Toolbar**.
+</Tip>
+
+<Warning>
+  If you see a connection error after clicking **Save** in the settings panel, double-check that your NextNav URL is reachable from your current network — especially if you're accessing a local instance from outside your home network — and confirm that your username and password are correct.
+</Warning>

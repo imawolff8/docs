@@ -1,0 +1,82 @@
+{
+  "projectType": "saas",
+  "projectName": "NextNav",
+  "projectDescription": "NextNav is a lightweight, self-hosted bookmark navigation app that centralizes your browser bookmarks so you can access them from any device, platform, or browser.",
+  "theme": "almond",
+  "primaryColor": "#3B82F6",
+  "lightColor": "#60A5FA",
+  "darkColor": "#1D4ED8",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "deployment/docker",
+              "deployment/manual"
+            ]
+          },
+          {
+            "group": "Using NextNav",
+            "pages": [
+              "usage/dashboard",
+              "usage/bookmarks",
+              "usage/categories",
+              "usage/search",
+              "usage/import-export"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/settings",
+              "configuration/themes",
+              "configuration/user-management"
+            ]
+          },
+          {
+            "group": "Browser Extension",
+            "pages": [
+              "extension/overview",
+              "extension/setup"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "help/faq",
+              "help/troubleshooting"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Centralized bookmark management across all devices, browsers, and platforms",
+    "Self-hosted deployment — deploy once, access anywhere",
+    "Docker and manual installation support",
+    "Category and sub-category organization for bookmarks",
+    "Full-text bookmark search",
+    "Browser extension for saving bookmarks directly from any browser",
+    "Import bookmarks from Chrome, Firefox, and Edge",
+    "Multiple UI themes",
+    "Admin backend with drag-and-drop sorting",
+    "Private/public bookmark visibility controls",
+    "Lightweight with minimal resource usage"
+  ],
+  "publicApiSurface": [
+    "Bookmark CRUD operations",
+    "Category management",
+    "Bookmark import (Chrome/Firefox/Edge HTML export)",
+    "Bookmark search",
+    "User authentication (admin login)",
+    "Theme selection",
+    "Docker deployment via helloz/onenav or equivalent image",
+    "Environment variable configuration"
+  ]
+}

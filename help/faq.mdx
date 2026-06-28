@@ -1,0 +1,109 @@
+---
+title: "Frequently Asked Questions About NextNav"
+sidebarTitle: "FAQ"
+description: "Answers to the most common questions about NextNav: access, data storage, browsers, accounts, backups, and cross-device usage."
+---
+
+Whether you're setting up NextNav for the first time or sharing it with others on your network, this page gives you quick answers to the questions most people ask when getting started.
+
+<Accordion title="Do I need an account to use NextNav?">
+  No. Guests can view any bookmarks you've marked as public without logging in. The only account NextNav uses is the single admin account created during first-run setup. Only that admin account can add, edit, or delete bookmarks.
+</Accordion>
+
+<Accordion title="Can multiple people use the same NextNav instance?">
+  NextNav is designed around a single admin account. Multiple people can open your NextNav URL and browse shared bookmarks as guests, but only the admin can create, edit, or remove bookmarks. If you need collaborative editing, consider running separate instances.
+</Accordion>
+
+<Accordion title="Where is my data stored?">
+  All of your bookmarks are stored in a SQLite database file at `data/db.sqlite` on your server. NextNav never sends your data to any external service — everything stays on the machine you control.
+
+  <Tip>
+    Back up this single file to protect all of your bookmarks. See the backup question below for details.
+  </Tip>
+</Accordion>
+
+<Accordion title="How do I access NextNav on my phone?">
+  Open your NextNav URL in any mobile browser. The interface is fully responsive and adapts to smaller screens automatically. For faster access, add NextNav to your home screen as a Progressive Web App (PWA):
+
+  <Steps>
+    <Step title="Open NextNav in your mobile browser">
+      Navigate to your NextNav URL in Safari (iOS) or Chrome (Android).
+    </Step>
+    <Step title="Open the browser share or menu">
+      Tap the Share button on iOS or the three-dot menu on Android.
+    </Step>
+    <Step title="Add to Home Screen">
+      Select **Add to Home Screen** and confirm. NextNav will appear as an app icon on your home screen.
+    </Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="Can I use NextNav as a browser new-tab page?">
+  Yes. Most desktop browsers let you set a custom URL as your new-tab page. Set it to your NextNav URL and your bookmarks will appear every time you open a new tab.
+
+  <Tabs>
+    <Tab title="Chrome">
+      Install a new-tab extension such as **Custom New Tab URL**, then enter your NextNav URL in the extension settings.
+    </Tab>
+    <Tab title="Firefox">
+      Go to **about:config**, search for `browser.newtab.url`, and set the value to your NextNav URL.
+    </Tab>
+    <Tab title="Edge">
+      Go to **Settings** → **New tab page** → **Custom** and enter your NextNav URL.
+    </Tab>
+  </Tabs>
+</Accordion>
+
+<Accordion title="Does NextNav work offline?">
+  NextNav requires a network connection to the server it's running on. If you host it locally (for example, on your home server or laptop), it works fine on your home network without any internet connection. You only need internet access if your server is hosted remotely.
+</Accordion>
+
+<Accordion title="What browsers are supported?">
+  NextNav works in any modern browser. Confirmed supported browsers include:
+
+  - **Chrome** (and Chromium-based browsers)
+  - **Firefox**
+  - **Microsoft Edge**
+  - **Safari** (desktop and iOS)
+  - **Brave**
+
+  <Note>
+    Very old browser versions may have limited support. Keep your browser up to date for the best experience.
+  </Note>
+</Accordion>
+
+<Accordion title="How do I back up my bookmarks?">
+  You have two options for backing up your bookmarks:
+
+  **Option 1 — Copy the database file (recommended)**
+
+  Copy `data/db.sqlite` from your server to a safe location. If you're using Docker, the file lives in the mounted volume at `/data/nextnav/db.sqlite` by default.
+
+  ```bash
+  cp /data/nextnav/db.sqlite ~/nextnav-backup-$(date +%F).sqlite
+  ```
+
+  **Option 2 — Export as HTML**
+
+  Log in as admin, open the **Admin Panel**, and use the export feature to download your bookmarks as a standard browser-compatible HTML file. You can re-import this file into NextNav or any browser.
+</Accordion>
+
+<Accordion title="Can I run NextNav on a Raspberry Pi or NAS?">
+  Yes. NextNav is intentionally lightweight — the Docker image is under 100 MB — and it runs on ARM-based devices including Raspberry Pi (all models with 64-bit OS) and most NAS devices that support Docker.
+
+  <Tip>
+    Use the `linux/arm64` or `linux/arm/v7` Docker image tag to match your device's architecture.
+  </Tip>
+</Accordion>
+
+<Accordion title="How do I update to a new version?">
+  Pull the latest Docker image and recreate your container. Your data is safe as long as you're using a persistent volume.
+
+  ```bash
+  docker pull imawolff8/nextnav:latest
+  docker stop nextnav && docker rm nextnav
+  # Re-run your original docker run command
+  ```
+
+  For the full update walkthrough, including Docker Compose instructions, see the [Docker deployment guide](/deployment/docker).
+</Accordion>

@@ -1,0 +1,60 @@
+---
+title: "Navigating the NextNav Dashboard"
+sidebarTitle: "Dashboard"
+description: "Learn how the NextNav dashboard is organized — the bookmark grid, category sidebar, bottom toolbar, and quick-access controls available after login."
+---
+
+The dashboard is your main workspace in NextNav. Every time you open the app, this is where you land — a clean, organized view of all your bookmarks, ready to browse, search, or manage from any device or browser.
+
+## Dashboard Layout
+
+The dashboard is divided into three distinct areas, each serving a specific purpose.
+
+### Category Sidebar
+
+The left panel lists all your categories and sub-categories. Click any category name to instantly filter the bookmark grid to show only the bookmarks in that group. The sidebar always reflects your full category structure, making it easy to jump between sections without using search.
+
+### Bookmark Grid
+
+The main area of the dashboard displays all bookmarks that belong to the currently selected category. Each bookmark appears as a card showing its name, icon, and (optionally) a short description. If no category is selected, the grid shows all bookmarks you have access to.
+
+### Bottom Toolbar
+
+The bottom toolbar appears only after you log in as an admin. It provides quick access to the most common management actions:
+
+- **Add Bookmark** — open the form to create a new bookmark
+- **Subscriptions** — manage any bookmark subscription feeds
+- **System Status** — view health and uptime information for your NextNav instance
+- **Admin Panel** — navigate to the full administration interface
+- **Back to Top** — scroll the bookmark grid back to the top instantly
+
+<Note>
+  The bottom toolbar is hidden from guests by default. It appears only after you log in as an admin.
+</Note>
+
+## Guest vs. Admin View
+
+What you see on the dashboard depends on whether you are browsing as a guest or logged in as an admin.
+
+<Tabs>
+  <Tab title="Guest">
+    As a guest, you can browse all bookmarks that have been marked as **public** by the admin. The bottom toolbar is not visible, and you cannot add, edit, delete, or reorder any bookmarks. Guest access is read-only and requires no login.
+  </Tab>
+  <Tab title="Admin">
+    After logging in, you see **all bookmarks** — both public and private. The bottom toolbar appears at the bottom of the screen, giving you access to Add Bookmark, Subscriptions, System Status, the Admin Panel, and the Back to Top button. Inline editing is also enabled: hover over any bookmark to access edit and delete options directly from the grid.
+  </Tab>
+</Tabs>
+
+## Accessing the Admin Panel
+
+To log into NextNav as an admin, navigate to:
+
+```
+http://YOUR_SITE/index.php?c=login
+```
+
+Replace `YOUR_SITE` with the hostname or IP address of your NextNav instance. After a successful login, you are redirected back to the dashboard with the admin toolbar visible.
+
+<Tip>
+  Bookmark `http://YOUR_SITE/index.php?c=login` in your browser for quick access to the admin login page whenever you need to make changes.
+</Tip>

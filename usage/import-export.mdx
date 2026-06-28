@@ -1,0 +1,93 @@
+---
+title: "Import Browser Bookmarks into NextNav"
+sidebarTitle: "Import & Export"
+description: "Import your existing Chrome, Firefox, or Edge bookmarks into NextNav using an HTML export file. Step-by-step guide for all major browsers."
+---
+
+NextNav lets you import bookmarks from any major browser using the standard HTML export format. If you are migrating from Chrome, Firefox, or Edge, you can bring your entire bookmark collection into NextNav in just a few steps — no manual re-entry required.
+
+## Export From Your Browser
+
+Before importing into NextNav, export your bookmarks from your browser as an `.html` file.
+
+<Tabs>
+  <Tab title="Chrome">
+    <Steps>
+      <Step title="Open Bookmarks Manager">
+        In the Chrome address bar, navigate to `chrome://bookmarks` to open the Bookmarks Manager.
+      </Step>
+      <Step title="Open the menu">
+        Click the **three-dot menu** (⋮) in the top-right corner of the Bookmarks Manager panel.
+      </Step>
+      <Step title="Export bookmarks">
+        Click **Export bookmarks**. Chrome prompts you to choose a save location. Save the file somewhere you can easily find it — the default filename is `bookmarks_MM_DD_YYYY.html`.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Firefox">
+    <Steps>
+      <Step title="Open the Bookmarks menu">
+        Click the **Bookmarks** menu in the Firefox menu bar (or press `Alt` to reveal the menu bar if it is hidden).
+      </Step>
+      <Step title="Open Manage Bookmarks">
+        Select **Manage Bookmarks** to open the Library window.
+      </Step>
+      <Step title="Export to HTML">
+        In the Library window, click **Import and Backup** → **Export Bookmarks to HTML**. Choose where to save the file and confirm.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Edge">
+    <Steps>
+      <Step title="Open Favorites">
+        Click the **Favorites** icon (star/bookmark) in the Edge toolbar, then click **Manage Favorites** to open the Favorites management page.
+      </Step>
+      <Step title="Open the menu">
+        Click the **three-dot menu** (⋮) near the top-right of the Manage Favorites page.
+      </Step>
+      <Step title="Export favorites">
+        Select **Export favorites**. Edge saves the file as `favorites_MM_DD_YYYY.html` in your default downloads folder, or prompts you to choose a location.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Import Into NextNav
+
+Once you have your browser export file ready, follow these steps to bring it into NextNav.
+
+<Steps>
+  <Step title="Log into the NextNav admin panel">
+    Navigate to `http://YOUR_SITE/index.php?c=login` and sign in with your admin credentials.
+  </Step>
+  <Step title="Navigate to Import">
+    Click **Admin Panel** in the bottom toolbar, then go to **Bookmark Management** → **Import**.
+  </Step>
+  <Step title="Select your file">
+    Click **Choose File** and select the `.html` file you exported from your browser.
+  </Step>
+  <Step title="Start the import">
+    Click **Import** and wait for the process to complete. A progress indicator or confirmation message will appear when the import finishes.
+  </Step>
+  <Step title="Verify your bookmarks">
+    Refresh the dashboard. Your imported bookmarks now appear in the bookmark grid, organized into categories that match the folder structure from your browser.
+  </Step>
+</Steps>
+
+<Note>
+  Imported bookmarks preserve the folder structure from your browser. Each bookmark folder becomes a category in NextNav, so your existing organization carries over automatically.
+</Note>
+
+<Warning>
+  Very large bookmark files (thousands of entries) may take a moment to import. Do not close the browser tab or navigate away during the import process — doing so may interrupt the import and result in incomplete data.
+</Warning>
+
+## Exporting From NextNav
+
+NextNav can also export your bookmarks as a standard HTML file, useful for creating backups or migrating to another tool. To export:
+
+1. Log in and click **Admin Panel** in the bottom toolbar.
+2. Go to **Bookmark Management** → **Export**.
+3. Click the export button to download the `.html` file to your device.
+
+Store your export file somewhere safe. You can re-import it into NextNav or open it in any browser that supports the standard bookmarks HTML format.

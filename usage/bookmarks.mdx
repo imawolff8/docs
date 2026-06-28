@@ -1,0 +1,70 @@
+---
+title: "Add, Edit, and Manage Bookmarks in NextNav"
+sidebarTitle: "Bookmarks"
+description: "How to add new bookmarks, edit existing ones, set visibility, use the right-click context menu, and drag to reorder your links in NextNav."
+---
+
+Bookmarks are the core of NextNav. Every link you save — whether a self-hosted service, an internal tool, or an external site — lives here as a bookmark. You can organize, label, and control the visibility of each one directly from the dashboard.
+
+## Adding a Bookmark
+
+<Steps>
+  <Step title="Log in as admin">
+    Navigate to `http://YOUR_SITE/index.php?c=login` and enter your admin credentials. The bottom toolbar appears once you are logged in.
+  </Step>
+  <Step title="Click Add Bookmark">
+    In the bottom toolbar, click the **Add Bookmark** button to open the bookmark creation form.
+  </Step>
+  <Step title="Fill in the bookmark details">
+    Enter the required fields and any optional details you want to include. See the [Bookmark Fields](#bookmark-fields) section below for a full description of each field.
+  </Step>
+  <Step title="Save the bookmark">
+    Click **Save**. The new bookmark immediately appears in the bookmark grid under the category you selected.
+  </Step>
+</Steps>
+
+## Bookmark Fields
+
+| Field | Required | Description |
+|---|---|---|
+| Name | Yes | The display name shown on the bookmark card in the grid. |
+| URL | Yes | The primary link destination that opens when you click the bookmark. |
+| Category | No | The category this bookmark belongs to. Uncategorized bookmarks appear in the default view. |
+| Alternate URL | No | A fallback URL for the same service (e.g., an internal IP address vs. an external domain). Accessible via the right-click context menu. |
+| Private | No | When enabled, hides the bookmark from guests. Only logged-in admins can see private bookmarks. |
+
+## Editing a Bookmark
+
+To edit an existing bookmark, log in as admin, then use one of the following methods:
+
+- **Right-click context menu** — hover over any bookmark in the grid, right-click it, and select **Edit** from the menu that appears.
+- **Bookmark popup** — click the bookmark's icon to open its detail popup, then click the **Edit** button inside the popup.
+
+Either method opens the same edit form, pre-filled with the bookmark's current values. Make your changes and click **Save**.
+
+## Right-Click Context Menu
+
+Right-clicking any bookmark in the grid opens a context menu with the following actions:
+
+- **Open Link** — open the bookmark's primary URL
+- **Open Alternate Link** — open the alternate URL, if one has been set
+- **Copy Link** — copy the primary URL to your clipboard
+- **Show QR Code** — display a scannable QR code for the bookmark's URL
+- **Edit** — open the bookmark edit form *(admin only)*
+- **Delete** — permanently remove the bookmark *(admin only)*
+
+## Drag-and-Drop Sorting
+
+You can reorder bookmarks within the grid by dragging them to a new position. Log in as admin, hover over the **icon area** of a bookmark, then click and drag it to the desired location in the grid.
+
+<Note>
+  Drag-and-drop is triggered by clicking the icon area of a bookmark card, not the title text. If clicking the title opens the link instead of starting a drag, move your cursor to the icon and try again.
+</Note>
+
+## Deleting a Bookmark
+
+To delete a bookmark, right-click it in the grid and select **Delete** from the context menu. A confirmation prompt appears — confirm the deletion to remove the bookmark.
+
+<Warning>
+  Deleting a bookmark is permanent and cannot be undone. Make sure you no longer need the link before confirming the deletion.
+</Warning>

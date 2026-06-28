@@ -1,0 +1,115 @@
+---
+title: "Deploy NextNav with Docker or Docker Compose"
+sidebarTitle: "Docker"
+description: "Run NextNav using a single Docker command or Docker Compose. Includes volume mounting for persistent data and port configuration options."
+---
+
+Docker is the recommended way to deploy NextNav. It packages the PHP runtime, web server, and application together so you get a consistent, reproducible installation with no dependency conflicts. This guide covers both a quick `docker run` one-liner and a Docker Compose setup suitable for long-term production use.
+
+## Prerequisites
+
+<Note>
+  You need **Docker Engine 20.10 or higher** installed on your host. On Linux, install it through your distribution's package manager or via the [official Docker install script](https://docs.docker.com/engine/install/). On macOS and Windows, install **Docker Desktop**, which bundles both the engine and Compose.
+</Note>
+
+## Quick Deploy with `docker run`
+
+Paste this command into your terminal to pull the image and start NextNav immediately:
+
+```bash
+docker run -itd \
+  --name="nextnav" \
+  -p 3080:80 \
+  -v /data/nextnav:/data/wwwroot/default/data \
+  --restart always \
+  helloz/onenav
+```
+
+Here's what each flag does:
+
+| Flag | Purpose |
+|------|---------|
+| `-p 3080:80` | Maps **host port 3080** to container port 80. Change `3080` to any free port on your host if needed. |
+| `-v /data/nextnav:/data/wwwroot/default/data` | Mounts a host directory to persist bookmark data. Change the host path (`/data/nextnav`) to any location you prefer. **Do not change the container path.** |
+| `--restart always` | Automatically restarts the container after a system reboot or a Docker daemon restart. |
+
+<Warning>
+  Never modify the container-side volume path `/data/wwwroot/default/data`. NextNav hard-codes this location for its SQLite database and uploaded files. Changing it will cause the application to lose access to all existing data.
+</Warning>
+
+## Docker Compose
+
+For a more maintainable setup — especially if you run multiple containers on the same host — use a `docker-compose.yml` file.
+
+Create the file with the following contents:
+
+```yaml
+version: '3'
+services:
+  nextnav:
+    image: helloz/onenav
+    container_name: nextnav
+    ports:
+      - "3080:80"
+    volumes:
+      - /data/nextnav:/data/wwwroot/default/data
+    restart: always
+```
+
+Then start the service in detached mode:
+
+```bash
+docker compose up -d
+```
+
+To stop it later, run `docker compose down` from the same directory. Your data remains intact in `/data/nextnav`.
+
+## First-Time Setup
+
+After the container starts, open your browser and visit:
+
+```
+http://YOUR_SERVER_IP:3080
+```
+
+Replace `YOUR_SERVER_IP` with `localhost` for a local machine, or the actual IP/hostname for a remote server. The setup wizard walks you through creating your admin username and password. Complete it before sharing the URL with other users.
+
+## Updating NextNav
+
+Pull the latest image and replace the running container while keeping your data volume intact.
+
+<Steps>
+  <Step title="Pull the latest image">
+    ```bash
+    docker pull helloz/onenav
+    ```
+  </Step>
+  <Step title="Stop the running container">
+    ```bash
+    docker stop nextnav
+    ```
+  </Step>
+  <Step title="Remove the old container">
+    ```bash
+    docker rm nextnav
+    ```
+
+    This removes the container only — your data in `/data/nextnav` is untouched.
+  </Step>
+  <Step title="Start a new container with the same volume">
+    Re-run the original `docker run` command (or `docker compose up -d` if you're using Compose). The new container attaches to the existing data directory and all your bookmarks are preserved.
+
+    ```bash
+    docker run -itd \
+      --name="nextnav" \
+      -p 3080:80 \
+      -v /data/nextnav:/data/wwwroot/default/data \
+      --restart always \
+      helloz/onenav
+    ```
+  </Step>
+</Steps>
+
+<Tip>
+  In production, place NextNav behind a reverse proxy such as **nginx** or **Caddy** to terminate HTTPS and serve it on port 443. Caddy in particular can provision a Let's Encrypt certificate automatically with a single line of configuration.
+</Tip>

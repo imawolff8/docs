@@ -1,47 +1,60 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get Started with NextNav in Under 5 Minutes"
+sidebarTitle: "Quick Start"
+description: "Deploy NextNav with Docker, create your admin account, and save your first bookmark. Complete setup walkthrough in five minutes or less."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+By the end of this guide you'll have a fully running NextNav instance, a configured admin account, and your first bookmark saved — all in five minutes or less. The steps below use Docker, which is the fastest path to a working installation on any machine.
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+<Note>
+  You need one of the following before you begin:
 
-## Prerequisites
+  - **Docker** (recommended) — Docker Desktop on macOS or Windows, or Docker Engine on Linux. Any recent version works.
+  - **PHP 7.4 or higher** with SQLite enabled — if you prefer a manual install on an existing web server, follow the [Manual Install](/deployment/manual) guide instead.
+</Note>
 
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+## Steps
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+  <Step title="Pull and run the NextNav Docker image">
+    Run the following command in your terminal. It downloads the image and starts the container in the background:
 
     ```bash
-    npm install your-package
+    docker run -itd \
+      --name="nextnav" \
+      -p 3080:80 \
+      -v /data/nextnav:/data/wwwroot/default/data \
+      --restart always \
+      helloz/onenav
     ```
+
+    Docker maps port `3080` on your host to the container, and mounts `/data/nextnav` so your bookmarks persist across restarts and updates. The container starts automatically on reboot thanks to `--restart always`.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Open the setup wizard">
+    Open your browser and navigate to:
 
-    ```bash
-    your-cli init
     ```
+    http://localhost:3080
+    ```
+
+    NextNav's first-run setup wizard loads automatically. Follow the on-screen prompts to choose an admin username and password. Complete the wizard before proceeding.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Log into the admin panel">
+    After finishing the wizard, go to the login page:
 
-    ```bash
-    your-cli start
     ```
+    http://localhost:3080/index.php?c=login
+    ```
+
+    Enter the admin credentials you just created. You'll land on the main dashboard.
+  </Step>
+  <Step title="Save your first bookmark">
+    Click **Add Bookmark** in the bottom toolbar. Fill in the URL and an optional title, then click **Save**. Your first link now appears in the dashboard — accessible from any device on your network.
   </Step>
 </Steps>
 
 <Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+  Ready to move beyond a local test setup? See [Deploy with Docker](/deployment/docker) for production-grade configuration including reverse proxy and HTTPS.
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+  Already have a library of browser bookmarks? Head to [Import & Export](/usage/import-export) to bring them all in at once instead of adding them one by one.
 </Tip>
