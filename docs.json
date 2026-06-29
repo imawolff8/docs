@@ -46,5 +46,8 @@
     "socials": {
       "github": "https://github.com/imawolff8/NextNav"
     }
+  },
+  "icons": {
+    "library": "lucide"
   }
 }
