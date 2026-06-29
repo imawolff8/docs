@@ -20,20 +20,9 @@
               "start/update"
             ]
           },
-          {
-            "group": "浏览器扩展",
-            "pages": [
-              "extension/usage"
-            ]
-          },
-          {
-            "group": "帮助",
-            "pages": [
-              "help/faq"
-            ]
-          },
           "file",
-          "file-1"
+          "file-1",
+          "file-2"
         ]
       }
     ]
