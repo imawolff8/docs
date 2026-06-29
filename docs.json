@@ -32,12 +32,7 @@
       "type": "github",
       "href": "https://github.com/imawolff8/NextNav"
     },
-    "links": [
-      {
-        "href": "https://nextnav.org",
-        "label": "NextNav"
-      }
-    ]
+    "links": []
   },
   "footer": {
     "socials": {
