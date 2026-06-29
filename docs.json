@@ -12,7 +12,7 @@
     "tabs": [
       {
         "tab": "文档",
-        "groups": [
+        "pages": [
           {
             "group": "开始",
             "pages": [
@@ -31,7 +31,9 @@
             "pages": [
               "help/faq"
             ]
-          }
+          },
+          "file",
+          "file-1"
         ]
       }
     ]
