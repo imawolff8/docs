@@ -1,65 +1,49 @@
 ---
-title: "NextNav: Centralized Bookmark Navigation for Every Device"
-sidebarTitle: "Home"
-description: "NextNav is a lightweight, self-hosted bookmark manager. Deploy once and access all your bookmarks from any device, browser, or platform."
+title: "NextNav：在任何设备上集中管理你的书签"
+sidebarTitle: "首页"
+description: "NextNav 是一款轻量级的自托管书签管理器。它为您提供了一个统一的数据空间，用于存储、整理和搜索所有书签 —— 支持通过任何设备、浏览器或操作系统进行访问。无论您是在办公笔记本、家用台式机还是手机之间切换，您的书签都能随时随地与您随行，完全无需依赖任何云服务、浏览器同步功能或第三方账号。"
 ---
 
-NextNav gives you a single home for all your browser bookmarks. Deploy it once on your own server or home lab, and every bookmark you save is instantly available whether you're on your laptop, phone, or a shared computer — no matter which browser you use.
+## 主要特点
 
 <CardGroup cols={2}>
-  <Card title="Quick Start" icon="rocket" href="/quickstart">
-    Get NextNav running and save your first bookmark in minutes.
+  <Card title="资源占用低" icon="mobile-screen">
+    占用资源极低，通常情况下，内存占用在百兆上下，在树莓派上都能很轻松的跑起来。
   </Card>
-  <Card title="Deploy with Docker" icon="docker" href="/deployment/docker">
-    The fastest way to deploy NextNav using a single Docker command.
+
+  <Card title="操作简单" icon="browsers">
+    操作简单，采用经典的 total commander 双栏布局，让新建、修改、删除、拖拽排序等更加方便。
   </Card>
-  <Card title="Manage Bookmarks" icon="bookmark" href="/usage/bookmarks">
-    Add, edit, organize, and open your bookmarks from the dashboard.
+
+  <Card title="自定义功能强大" icon="lock">
+    支持自定义网站 logo、UI 配色，支持自定义分类图标、站点 favicon，支持黑暗模式。
   </Card>
-  <Card title="Browser Extension" icon="puzzle-piece" href="/extension/overview">
-    Save bookmarks to NextNav directly from any browser tab.
+
+  <Card title="支持一键获取站点信息" icon="folder-open">
+    支持创建、编辑站点时一键自动获取标题、描述、favicon 等站点信息。
+  </Card>
+
+  <Card title="支持 favicon 降级获取" icon="magnifying-glass">
+    支持 favicon 精度不足时自动采用最近邻插值算法弥补，获取失败时自动采取候补方案：创建域名首字母图片（随机字体、背景色，优化对比度）。
+  </Card>
+
+  <Card title="支持 AI 翻译站点描述" icon="file-import">
+    支持采用 AI 翻译生成中英文站点描述并加以润色，最大程度优化检索结果（拼音、中文、英文关键词均能匹配）。
+  </Card>
+
+  <Card title="支持私有" icon="file-import">
+    支持私有分类、站点（登录状态可见）。
+  </Card>
+
+  <Card title="支持链接检测" icon="file-import">
+    支持定时批量检测站点链接有效性（死链、重定向等）。
+  </Card>
+
+  <Card title="支持导入书签" icon="file-import">
+    支持导入浏览器书签。
+  </Card>
+
+  <Card title="支持浏览器扩展" icon="file-import">
+    支持使用浏览器扩展创建、编辑站点及及通过地址栏检索导航站内容。
   </Card>
 </CardGroup>
-
-## What NextNav does
-
-NextNav solves the problem of bookmarks being scattered across multiple browsers and devices. Instead of syncing bookmarks through each browser's built-in account, you keep everything in one place that you control.
-
-<CardGroup cols={3}>
-  <Card title="Cross-device access" icon="devices">
-    Open your bookmarks on any device by visiting your NextNav URL.
-  </Card>
-  <Card title="Cross-browser sync" icon="globe">
-    Works regardless of whether you use Chrome, Firefox, Edge, or Safari.
-  </Card>
-  <Card title="Private & self-hosted" icon="lock">
-    Your bookmark data lives on your server — not in the cloud.
-  </Card>
-  <Card title="Category organization" icon="folder-open">
-    Group bookmarks into categories and sub-categories you define.
-  </Card>
-  <Card title="Fast search" icon="magnifying-glass">
-    Find any bookmark instantly with the built-in keyword search.
-  </Card>
-  <Card title="Import existing bookmarks" icon="upload">
-    Bring in bookmarks from Chrome, Firefox, or Edge with one click.
-  </Card>
-</CardGroup>
-
-## Get started in three steps
-
-<Steps>
-  <Step title="Deploy NextNav">
-    Run NextNav on your server using Docker or a manual PHP/SQLite setup. See [Deploy with Docker](/deployment/docker) or [Manual Installation](/deployment/manual).
-  </Step>
-  <Step title="Set up your account">
-    On first launch, NextNav walks you through creating your admin username and password. Your credentials are stored locally — no external accounts needed.
-  </Step>
-  <Step title="Add your bookmarks">
-    Import your existing bookmarks from Chrome, Firefox, or Edge, or start adding them one by one. Install the browser extension to save new bookmarks with a single click.
-  </Step>
-</Steps>
-
-<Tip>
-  Looking for the fastest path? Follow the [Quick Start guide](/quickstart) to go from zero to a running NextNav instance in under five minutes.
-</Tip>

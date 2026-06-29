@@ -16,7 +16,6 @@
           {
             "group": "开始",
             "pages": [
-              "start/introduction",
               "start/deployment",
               "start/update"
             ]
