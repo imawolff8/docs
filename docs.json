@@ -41,17 +41,15 @@
             ]
           },
           {
-            "group": "Browser Extension",
+            "group": "浏览器扩展",
             "pages": [
-              "extension/overview",
-              "extension/setup"
+              "extension/usage"
             ]
           },
           {
             "group": "帮助",
             "pages": [
-              "help/faq",
-              "troubleshooting"
+              "help/faq"
             ]
           }
         ]
