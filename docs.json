@@ -16,28 +16,9 @@
           {
             "group": "开始",
             "pages": [
-              "introduction",
-              "deploy",
-              "update",
-              "deployment/manual"
-            ]
-          },
-          {
-            "group": "Using NextNav",
-            "pages": [
-              "usage/dashboard",
-              "usage/bookmarks",
-              "usage/categories",
-              "usage/search",
-              "usage/import-export"
-            ]
-          },
-          {
-            "group": "Configuration",
-            "pages": [
-              "configuration/settings",
-              "configuration/themes",
-              "configuration/user-management"
+              "start/introduction",
+              "start/deployment",
+              "start/update"
             ]
           },
           {
