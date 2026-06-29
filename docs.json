@@ -11,7 +11,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "文档",
+        "tab": "部署",
         "pages": [
           {
             "group": "开始",
@@ -31,7 +31,13 @@
     "primary": {
       "type": "github",
       "href": "https://github.com/imawolff8/NextNav"
-    }
+    },
+    "links": [
+      {
+        "href": "https://nextnav.org",
+        "label": "NextNav"
+      }
+    ]
   },
   "footer": {
     "socials": {
